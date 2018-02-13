@@ -4,12 +4,12 @@
 #
 Name     : efitools
 Version  : 1.8.0
-Release  : 1
+Release  : 2
 URL      : https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-1.8.0.tar.gz
 Source0  : https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-1.8.0.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GPL-2.0+LGPL-2.1
+License  : GPL-2.0 LGPL-2.1
 Requires: efitools-bin
 Requires: efitools-data
 Requires: efitools-doc
@@ -60,11 +60,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1518406199
+export SOURCE_DATE_EPOCH=1518548387
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1518406199
+export SOURCE_DATE_EPOCH=1518548387
 rm -rf %{buildroot}
 %make_install
 
