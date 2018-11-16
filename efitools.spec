@@ -4,15 +4,16 @@
 #
 Name     : efitools
 Version  : 1.8.0
-Release  : 3
+Release  : 4
 URL      : https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-1.8.0.tar.gz
 Source0  : https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-1.8.0.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
-Requires: efitools-bin
-Requires: efitools-data
-Requires: efitools-doc
+Requires: efitools-bin = %{version}-%{release}
+Requires: efitools-data = %{version}-%{release}
+Requires: efitools-license = %{version}-%{release}
+Requires: efitools-man = %{version}-%{release}
 Requires: gnu-efi
 BuildRequires : gnu-efi
 BuildRequires : gnu-efi-dev
@@ -30,7 +31,9 @@ PK, KEK and db.
 %package bin
 Summary: bin components for the efitools package.
 Group: Binaries
-Requires: efitools-data
+Requires: efitools-data = %{version}-%{release}
+Requires: efitools-license = %{version}-%{release}
+Requires: efitools-man = %{version}-%{release}
 
 %description bin
 bin components for the efitools package.
@@ -44,12 +47,20 @@ Group: Data
 data components for the efitools package.
 
 
-%package doc
-Summary: doc components for the efitools package.
-Group: Documentation
+%package license
+Summary: license components for the efitools package.
+Group: Default
 
-%description doc
-doc components for the efitools package.
+%description license
+license components for the efitools package.
+
+
+%package man
+Summary: man components for the efitools package.
+Group: Default
+
+%description man
+man components for the efitools package.
 
 
 %prep
@@ -60,12 +71,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1518548387
+export SOURCE_DATE_EPOCH=1542395324
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1518548387
+export SOURCE_DATE_EPOCH=1542395324
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/efitools
+cp COPYING %{buildroot}/usr/share/package-licenses/efitools/COPYING
 %make_install
 
 %files
@@ -97,6 +110,16 @@ rm -rf %{buildroot}
 /usr/share/efitools/efi/ShimReplace.efi
 /usr/share/efitools/efi/UpdateVars.efi
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/efitools/COPYING
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/cert-to-efi-hash-list.1
+/usr/share/man/man1/cert-to-efi-sig-list.1
+/usr/share/man/man1/efi-readvar.1
+/usr/share/man/man1/efi-updatevar.1
+/usr/share/man/man1/hash-to-efi-sig-list.1
+/usr/share/man/man1/sig-list-to-certs.1
+/usr/share/man/man1/sign-efi-sig-list.1
