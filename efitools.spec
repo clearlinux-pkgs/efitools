@@ -4,7 +4,7 @@
 #
 Name     : efitools
 Version  : 1.8.0
-Release  : 4
+Release  : 5
 URL      : https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-1.8.0.tar.gz
 Source0  : https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-1.8.0.tar.gz
 Summary  : No detailed summary available
