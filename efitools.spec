@@ -4,7 +4,7 @@
 #
 Name     : efitools
 Version  : 1.8.0
-Release  : 6
+Release  : 7
 URL      : https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-1.8.0.tar.gz
 Source0  : https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-1.8.0.tar.gz
 Summary  : No detailed summary available
@@ -17,6 +17,7 @@ Requires: efitools-man = %{version}-%{release}
 Requires: gnu-efi
 BuildRequires : gnu-efi
 BuildRequires : gnu-efi-dev
+BuildRequires : gnu-efi-staticdev
 BuildRequires : help2man
 BuildRequires : openssl-dev
 BuildRequires : perl
@@ -33,7 +34,6 @@ Summary: bin components for the efitools package.
 Group: Binaries
 Requires: efitools-data = %{version}-%{release}
 Requires: efitools-license = %{version}-%{release}
-Requires: efitools-man = %{version}-%{release}
 
 %description bin
 bin components for the efitools package.
@@ -70,12 +70,21 @@ man components for the efitools package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1542395324
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1568745570
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
+
 %install
-export SOURCE_DATE_EPOCH=1542395324
+export SOURCE_DATE_EPOCH=1568745570
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/efitools
 cp COPYING %{buildroot}/usr/share/package-licenses/efitools/COPYING
