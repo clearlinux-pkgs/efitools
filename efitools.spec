@@ -4,7 +4,7 @@
 #
 Name     : efitools
 Version  : 1.8.0
-Release  : 7
+Release  : 8
 URL      : https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-1.8.0.tar.gz
 Source0  : https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-1.8.0.tar.gz
 Summary  : No detailed summary available
@@ -65,29 +65,30 @@ man components for the efitools package.
 
 %prep
 %setup -q -n efitools-1.8.0
+cd %{_builddir}/efitools-1.8.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568745570
+export SOURCE_DATE_EPOCH=1604705958
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1568745570
+export SOURCE_DATE_EPOCH=1604705958
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/efitools
-cp COPYING %{buildroot}/usr/share/package-licenses/efitools/COPYING
+cp %{_builddir}/efitools-1.8.0/COPYING %{buildroot}/usr/share/package-licenses/efitools/32405cbbf3d377f39f8cfca3a013e565aa752c7d
 %make_install
 
 %files
@@ -121,7 +122,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/efitools/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/efitools/COPYING
+/usr/share/package-licenses/efitools/32405cbbf3d377f39f8cfca3a013e565aa752c7d
 
 %files man
 %defattr(0644,root,root,0755)
