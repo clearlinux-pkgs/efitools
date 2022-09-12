@@ -4,7 +4,7 @@
 #
 Name     : efitools
 Version  : 1.9.2
-Release  : 9
+Release  : 10
 URL      : https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-1.9.2.tar.gz
 Source0  : https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-1.9.2.tar.gz
 Summary  : No detailed summary available
